@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эля | Студентка Почтовой связи</title>
+    <style>
+        /* ===== Общие настройки ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef3fb;
+            color: #a75c81;
+            line-height: 1.6;
+        }
+
+        /* ===== Шапка ===== */
+        header {
+            background: linear-gradient(135deg, #a55785 0%, #c05176 50%, #f07bc3 100%);
+            color: white;
+            padding: 70px 20px 90px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before,
+        header::after {
+            content: "✉";
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.08;
+            color: white;
+        }
+
+        header::before {
+            top: 10px;
+            left: 20px;
+            transform: rotate(-20deg);
+        }
+
+        header::after {
+            bottom: 0;
+            right: 30px;
+            transform: rotate(15deg);
+        }
+
+        header h1 {
+            font-size: 2.6em;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== Основной контейнер ===== */
+        .container {
+            max-width: 850px;
+            margin: -50px auto 40px;
+            background: #ffffff;
+            padding: 45px 40px;
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(30, 87, 153, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== Блок "Обо мне" ===== */
+        .about {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            background: linear-gradient(135deg, #d6bfce, #d4a7c5);
+            border: 5px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(228, 119, 179, 0.25);
+        }
+
+        .about h2 {
+            color: #d667ac;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            font-size: 1.05em;
+            color: #2c2b2c;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== Карточки-факты ===== */
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 45px;
+        }
+
+        .fact-card {
+            background: #f7fbff;
+            border-top: 4px solid #d171c4;
+            padding: 20px;
+            border-radius: 12px;
+            flex: 1 1 220px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(41, 137, 216, 0.15);
+        }
+
+        .fact-card strong {
+            display: block;
+            color: #bd69a4;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .fact-card span {
+            color: #4a5568;
+            font-size: 0.95em;
+        }
+
+        /* ===== Раздел "Моя команда" ===== */
+        .team {
+            margin-bottom: 45px;
+            text-align: center;
+        }
+
+        .team h2 {
+            color: #da7cc2;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .team > p {
+color: #4a5568;
+13:28
+            margin-bottom: 30px;
+            font-size: 1em;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .team-card {
+            background: #f7fbff;
+            border-radius: 15px;
+            padding: 25px 15px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border: 1px solid #e1ecf7;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(41, 137, 216, 0.2);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #d66fa8, #eedc78);
+            box-shadow: 0 6px 15px rgba(41, 137, 216, 0.3);
+        }
+
+        .team-card h4 {
+            color: #4e4b4e;
+            font-size: 1.05em;
+            margin-bottom: 5px;
+        }
+
+        .team-card p {
+            color: #7a8b9c;
+            font-size: 0.85em;
+        }
+
+        /* ===== Раздел "Особенные люди" ===== */
+        .special {
+            margin-bottom: 45px;
+            text-align: center;
+        }
+
+        .special h2 {
+            color: #e77cde;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .special > p {
+            color: #424241;
+            margin-bottom: 30px;
+            font-size: 1em;
+        }
+
+        .special-card {
+            background: linear-gradient(135deg, #df93cc, #ebc471);
+            border: 2px solid #ebc869;
+            border-radius: 18px;
+            padding: 35px 25px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(224, 148, 231, 0.25);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .special-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(25, 25, 26, 0.35);
+        }
+
+        .special-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #f77ce2, #f7cb6d);
+            box-shadow: 0 8px 20px rgba(47, 47, 48, 0.4);
+            border: 4px solid #ffffff;
+        }
+
+        .special-card h4 {
+            color: #2a2b2c;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .special-card p {
+            color: #48494b;
+            font-size: 0.95em;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .star {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* ===== Контакты ===== */
+        .contacts {
+            text-align: center;
+            border-top: 1px solid #e1ecf7;
+            padding-top: 35px;
+        }
+
+        .contacts h3 {
+            color: #f787e8;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .contacts p {
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #e7c06b, #eb7cc0);
+            padding: 12px 26px;
+            border-radius: 30px;
+            font-size: 0.95em;
+            font-weight: 500;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+   
+13:28
+        box-shadow: 0 4px 12px rgba(41, 137, 216, 0.3);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(41, 137, 216, 0.4);
+        }
+
+        /* ===== Подвал ===== */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.85em;
+            color: #8899aa;
+        }
+
+        /* ===== Адаптив ===== */
+        @media (max-width: 600px) {
+            header {
+                padding: 50px 15px 70px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .container {
+                margin: -40px 15px 30px;
+                padding: 30px 20px;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 55px;
+            }
+
+            .social-links a {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .special-card {
+                padding: 25px 18px;
+            }
+
+            .special-avatar {
+                width: 90px;
+                height: 90px;
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Шапка ===== -->
+    <header>
+        <h1>Привет, я Эля! 👋 </h1>
+        <p>Студентка специальности «Почтовая связь»</p>
+    </header>
+
+    <!-- ===== Основной контент ===== -->
+    <div class="container">
+
+        <!-- Обо мне -->
+        <section class="about">
+            <div class="avatar">📮 </div>
+            <h2>Обо мне</h2>
+            <p>
+                Меня зовут Эля, и я учусь в колледже на специальности
+                <strong>«Почтовая связь»</strong>. Мне интересно всё, что связано
+                с организацией почтовых отправлений, логистикой и работой с клиентами.
+                Я уверена, что почта — это важная часть жизни людей, соединяющая города и страны.
+            </p>
+        </section>
+
+        <!-- Факты обо мне -->
+        <section class="facts">
+            <div class="fact-card">
+                <strong>🎓 Обучение</strong>
+                <span>Колледж почтовой связи. Изучаю организацию почтовых процессов и документооборот.</span>
+            </div>
+            <div class="fact-card">
+                <strong>💡  Навыки</strong>
+                <span>Работа с документами, клиентский сервис, основы логистики и деловой переписки.</span>
+            </div>
+            <div class="fact-card">
+                <strong>❤️  Интересы</strong>
+                <span>Люблю порядок, читать, узнавать новое о технологиях доставки и путешествиях.</span>
+            </div>
+        </section>
+
+        <!-- ===== Моя команда ===== -->
+        <section class="team">
+            <h2>💙  Моя команда</h2>
+            <p>Люди, с которыми я учусь, дружу и иду по жизни</p>
+
+            <div class="team-grid">
+
+                <div class="team-card">
+                    <div class="team-avatar">ИК</div>
+                    <h4>Ися Клотова</h4>
+                    <p>Верный друг и надёжный человек</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">СК</div>
+                    <h4>Сапля Кампинос</h4>
+                    <p>Всегда поддержит и подскажет</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">КА</div>
+                    <h4>Кашанеров Аркашка</h4>
+                    <p>Душа компании и генератор идей</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">ТУ</div>
+                    <h4>Тритикива Улина</h4>
+                    <p>Умница, красавица и просто класс</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== Особенные люди ===== -->
+         <section class="special">
+            <h2>⭐ Особенные люди</h2>
+     
+13:28
+      <p>Тот, кто особенно важен в моей жизни</p>
+
+            <div class="special-card">
+                <div class="special-avatar">ОВ</div>
+                <span class="star">✨</span>
+                <h4>Оксана Викторовна Савченко</h4>
+                <p>Дорогой и важный человек, который всегда рядом и поддерживает меня</p>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section class="contacts">
+            <h3>Связаться со мной</h3>
+            <p>Буду рада ответить на вопросы или просто пообщаться!</p>
+            <div class="social-links">
+                <a href="https://t.me/username"
+ target="_blank">Telegram</a>
+                <a href="https://vk.com/username"
+ target="_blank">ВКонтакте</a>
+                <a href="mailto:example@mail.ru">Email</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== Подвал ===== -->
+    <footer>
+        &copy; 2026 Эля. Сайт-визитка студентки Почтовой связи.
+    </footer>
+
+</body>
+</html>
